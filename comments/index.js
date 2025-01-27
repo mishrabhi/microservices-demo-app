@@ -1,12 +1,14 @@
 import express from "express";
 import { randomBytes } from "crypto";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const commentsByPostId = {};
 
-app.get("/post/:id/comments", (req, res) => {
+app.get("/posts/:id/comments", (req, res) => {
   res.send(commentsByPostId[req.params.id] || []);
 });
 
